@@ -21,8 +21,10 @@ public class CubeController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.DrawRay(new Vector3(transform.position.x - 0.9f, transform.position.y, transform.position.z), direction * 1.1f, Color.red);
-        Debug.DrawRay(new Vector3(transform.position.x + 0.9f, transform.position.y, transform.position.z), direction * 1.1f, Color.red);
+        Debug.DrawRay(new Vector3(transform.position.x - 0.9f, transform.position.y, transform.position.z), direction * 1.1f, Color.cyan);
+        Debug.DrawRay(new Vector3(transform.position.x + 0.9f, transform.position.y, transform.position.z), direction * 1.1f, Color.cyan);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.9f, transform.position.z), direction * 1.1f, Color.cyan);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.9f, transform.position.z), direction * 1.1f, Color.cyan);
         if (Last)
         {
             Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f), Vector3.down * 1.1f, Color.red);
@@ -36,9 +38,10 @@ public class CubeController : MonoBehaviour
 
     private void setRayCast()
     {
-        if (Physics.Raycast(new Vector3(transform.position.x - 0.9f, transform.position.y, transform.position.z), direction, out hit, 1f) ||
-        Physics.Raycast(new Vector3(transform.position.x + 0.9f, transform.position.y, transform.position.z), direction, out hit, 1f)
-        )
+        if (Physics.Raycast(new Vector3(transform.position.x - 0.9f, transform.position.y, transform.position.z), direction, out hit, 1f)
+        || Physics.Raycast(new Vector3(transform.position.x + 0.9f, transform.position.y, transform.position.z), direction, out hit, 1f)
+        || Physics.Raycast(new Vector3(transform.position.x, transform.position.y + 0.9f, transform.position.z), direction, out hit, 1f)
+        || Physics.Raycast(new Vector3(transform.position.x, transform.position.y - 0.9f, transform.position.z), direction, out hit, 1f))
         {
             // Debug.Log("raycash hitted!");
             if (!isPushed)
@@ -52,7 +55,8 @@ public class CubeController : MonoBehaviour
             {
                 stackControllerobj.GetComponent<StackController>().PopStack(gameObject);
             }
-            if(hit.transform.tag =="finishStairs"){
+            if (hit.transform.tag == "finishStairs")
+            {
                 stackControllerobj.GetComponent<MovementController>().VerticalMovementSpeed = 0;
             }
         }
@@ -62,24 +66,32 @@ public class CubeController : MonoBehaviour
     {
         if (Last)
         {
-            //void check raycasts
-            if (
-            Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f), Vector3.down, out hit, 1.1f, voidLM) &&
-            Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Vector3.down, out hit, 1.1f, voidLM) &&
-            Physics.Raycast(new Vector3(transform.position.x - 0.9f, transform.position.y, transform.position.z + 0.2f), Vector3.down, out hit, 1.1f, voidLM) &&
-            Physics.Raycast(new Vector3(transform.position.x + 0.9f, transform.position.y, transform.position.z + 0.2f), Vector3.down, out hit, 1.1f, voidLM))
-            {
-                stackControllerobj.GetComponent<StackController>().VoidStack(gameObject);
-            }
 
             //finish line raycast
-            else if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f), Vector3.down, out hit, 1.1f, finishLM) &&
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f), Vector3.down, out hit, 1.1f, finishLM) &&
             Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Vector3.down, out hit, 1.1f, finishLM)
             )
             {
                 Debug.Log("finish");
                 mouse.GetComponent<Animator>().SetBool("isFinished", true);
             }
+
+            if (
+            Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f), Vector3.down, out hit, 1.1f) &&
+            Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Vector3.down, out hit, 1.1f) &&
+            Physics.Raycast(new Vector3(transform.position.x - 0.9f, transform.position.y, transform.position.z + 0.2f), Vector3.down, out hit, 1.1f) &&
+            Physics.Raycast(new Vector3(transform.position.x + 0.9f, transform.position.y, transform.position.z + 0.2f), Vector3.down, out hit, 1.1f))
+            {
+                if (hit.transform.name == "void")
+                {
+                    stackControllerobj.GetComponent<StackController>().VoidStack(gameObject);
+                }
+                else if (hit.transform.name == "collectcube")
+                {
+                    stackControllerobj.GetComponent<StackController>().PushStack(gameObject);
+
+                }
+            };
         }
     }
 

@@ -16,7 +16,7 @@ public class colorChanger : MonoBehaviour
 
     private void Awake()
     {
-        gameObject.GetComponent<BoxCollider>().material.bounciness = 0f;
+        // gameObject.GetComponent<BoxCollider>().material.bounciness = 0f;
 
         goingForward = true;
         isCycling = false;
