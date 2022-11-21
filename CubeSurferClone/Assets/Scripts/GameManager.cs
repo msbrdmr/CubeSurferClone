@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class GameManager : MonoBehaviour
     GameObject startmenu;
     public static int Points;
     private static int count = 0;
-    
+
     public bool isgameOver = false;
 
     void Start()
@@ -22,5 +23,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         startmenu.gameObject.SetActive(false);
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
+
     }
 }

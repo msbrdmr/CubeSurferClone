@@ -30,5 +30,6 @@ public class Cheese : MonoBehaviour
     public void collectCheese()
     {
         isCollected = true;
+        PlayerPrefs.SetInt("cheese",PlayerPrefs.GetInt("cheese")+1);
     }
 }

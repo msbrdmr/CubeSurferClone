@@ -3,6 +3,7 @@ using UnityEngine;
 public class StackController : MonoBehaviour
 {
     [SerializeField] private GameObject GameOver;
+    [SerializeField] private GameObject GameOverButton;
     public List<GameObject> cubelist = new List<GameObject>();
     private GameObject lastCube;
     private RaycastHit hit;
@@ -81,12 +82,13 @@ public class StackController : MonoBehaviour
                 if (!isOver)
                 {
                     GameOver.GetComponent<Animator>().SetTrigger("isgameOver");
+                    GameOverButton.GetComponent<Animator>().SetTrigger("isGameOver");
                     Time.timeScale = 0f;
                     isOver = true;
                 }
             }
 
-            
+
         }
 
     }
@@ -95,7 +97,7 @@ public class StackController : MonoBehaviour
     {
 
         if (other.transform.tag == "cheese")
-        {   
+        {
             collectSound.Play();
             other.transform.gameObject.GetComponent<Cheese>().collectCheese();
             Destroy(other.transform.gameObject);
