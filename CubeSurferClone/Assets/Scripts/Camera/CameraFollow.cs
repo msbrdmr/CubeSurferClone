@@ -12,6 +12,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float lerpvalue;
     [SerializeField] private AudioSource bgMusic;
     public int targetFrameRate = 120;
+    public bool finished;
 
     void Start()
     {
@@ -26,14 +27,18 @@ public class CameraFollow : MonoBehaviour
     void FixedUpdate()
 
     {
+
+        if(!finished){
         beginY = transform.position.y;
         newY = playerTransform.position.y + deltaY;
         newPosition = Vector3.Lerp(transform.position, new Vector3(transform.position.x, newY, playerTransform.position.z + deltaZ), lerpvalue);
         transform.position = newPosition;
         var newDeltaY = beginY - newY;
-
         transform.Rotate(-1f * newDeltaY * 360 * (Time.fixedDeltaTime) / 4, 0, 0);
 
+        }
+
+        
         
     }
 }

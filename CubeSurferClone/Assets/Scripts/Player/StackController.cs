@@ -12,6 +12,10 @@ public class StackController : MonoBehaviour
     private bool isFinished;
     public AudioSource collectSound;
 
+    [Header("Camera")]
+    [SerializeField] private Camera cam;
+    public GameObject centerRotate;
+    public Vector3 axis;
 
     void Start()
     {
@@ -22,6 +26,13 @@ public class StackController : MonoBehaviour
     {
         setRayCast();
         Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z), Vector3.forward * 1.1f, Color.red);
+
+        if (isFinished)
+        {
+
+            cam.transform.RotateAround(centerRotate.transform.position, axis, 0.5f);
+
+        }
     }
 
     public void PushStack(GameObject gameobj)
@@ -87,6 +98,7 @@ public class StackController : MonoBehaviour
                     GameOverButton.GetComponent<Animator>().SetTrigger("isGameOver");
                     Time.timeScale = 0f;
                     isOver = true;
+                    cam.GetComponent<CameraFollow>().finished = true;
                 }
             }
 
@@ -100,6 +112,7 @@ public class StackController : MonoBehaviour
                     NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
                     PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 1);
                     isFinished = true;
+                    cam.GetComponent<CameraFollow>().finished = true;
 
                 }
                 //rotate camera
@@ -114,6 +127,7 @@ public class StackController : MonoBehaviour
                     NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
                     PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 2);
                     isFinished = true;
+                    cam.GetComponent<CameraFollow>().finished = true;
 
                 }
                 //rotate camera
@@ -128,6 +142,7 @@ public class StackController : MonoBehaviour
                     NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
                     PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 4);
                     isFinished = true;
+                    cam.GetComponent<CameraFollow>().finished = true;
 
                 }
                 //rotate camera
@@ -142,6 +157,7 @@ public class StackController : MonoBehaviour
                     NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
                     PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 6);
                     isFinished = true;
+                    cam.GetComponent<CameraFollow>().finished = true;
 
                 }
                 //rotate camera
@@ -156,6 +172,8 @@ public class StackController : MonoBehaviour
                     NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
                     PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 10);
                     isFinished = true;
+                    cam.GetComponent<CameraFollow>().finished = true;
+
 
                 }
                 //rotate camera
