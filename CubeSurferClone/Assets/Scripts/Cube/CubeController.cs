@@ -12,7 +12,7 @@ public class CubeController : MonoBehaviour
     private Vector3 direction = Vector3.back;
     private RaycastHit hit;
     [Header("Bool")]
-    public bool Last;
+    public bool Last = false;
     private bool isPushed = false;
     [Header("Audio")]
     public AudioSource collectSound;
@@ -21,16 +21,18 @@ public class CubeController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Forward raycasts
         Debug.DrawRay(new Vector3(transform.position.x - 0.9f, transform.position.y, transform.position.z), direction * 1.1f, Color.cyan);
         Debug.DrawRay(new Vector3(transform.position.x + 0.9f, transform.position.y, transform.position.z), direction * 1.1f, Color.cyan);
         Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 0.9f, transform.position.z), direction * 1.1f, Color.cyan);
         Debug.DrawRay(new Vector3(transform.position.x, transform.position.y - 0.9f, transform.position.z), direction * 1.1f, Color.cyan);
+        //Bottom raycast
         if (Last)
         {
-            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f), Vector3.down * 1.1f, Color.red);
-            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Vector3.down * 1.1f, Color.red);
-            Debug.DrawRay(new Vector3(transform.position.x - 0.9f, transform.position.y, transform.position.z), Vector3.down * 1.1f, Color.red);
-            Debug.DrawRay(new Vector3(transform.position.x + 0.9f, transform.position.y, transform.position.z), Vector3.down * 1.1f, Color.red);
+            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f), Vector3.down * 1.2f, Color.red);
+            Debug.DrawRay(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Vector3.down * 1.2f, Color.red);
+            Debug.DrawRay(new Vector3(transform.position.x - 1f, transform.position.y, transform.position.z), Vector3.down * 1.2f, Color.red);
+            Debug.DrawRay(new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z), Vector3.down * 1.2f, Color.red);
         }
         setRayCast();
         setBottomRayCast();
@@ -76,20 +78,17 @@ public class CubeController : MonoBehaviour
                 mouse.GetComponent<Animator>().SetBool("isFinished", true);
             }
 
-            if (
-            Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f), Vector3.down, out hit, 1.1f) &&
-            Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Vector3.down, out hit, 1.1f) &&
-            Physics.Raycast(new Vector3(transform.position.x - 0.9f, transform.position.y, transform.position.z + 0.2f), Vector3.down, out hit, 1.1f) &&
-            Physics.Raycast(new Vector3(transform.position.x + 0.9f, transform.position.y, transform.position.z + 0.2f), Vector3.down, out hit, 1.1f))
+            if
+            (
+                Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f), Vector3.down, out hit, 1.2f) &&
+                Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Vector3.down, out hit, 1.2f) &&
+                Physics.Raycast(new Vector3(transform.position.x - 1f, transform.position.y, transform.position.z), Vector3.down, out hit, 1.2f) &&
+                Physics.Raycast(new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z), Vector3.down, out hit, 1.2f)
+            )
             {
                 if (hit.transform.name == "void")
                 {
                     stackControllerobj.GetComponent<StackController>().VoidStack(gameObject);
-                }
-                else if (hit.transform.name == "collectcube")
-                {
-                    stackControllerobj.GetComponent<StackController>().PushStack(gameObject);
-
                 }
             };
         }
