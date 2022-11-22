@@ -13,7 +13,7 @@ public class SaveScore : MonoBehaviour
     }
 
     private void Update() {
-        scoreText.SetText((PlayerPrefs.GetInt("cheese").ToString()));
+        // scoreText.SetText((PlayerPrefs.GetInt("cheese").ToString()));
     }
 
 }

@@ -4,8 +4,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    [SerializeField]
-    GameObject startmenu;
+    
+    [SerializeField]GameObject startmenu;
+    [SerializeField]GameObject gamemenu;
+    
     public static int Points;
 
     void Start()
@@ -20,11 +22,12 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         startmenu.gameObject.SetActive(false);
+        gamemenu.gameObject.SetActive(true);
     }
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(0); 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
 
     }
 
