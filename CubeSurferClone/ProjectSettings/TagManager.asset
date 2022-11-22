@@ -8,6 +8,11 @@ TagManager:
   - void
   - cheese
   - finishStairs
+  - platformFinish1x
+  - platformFinish2x
+  - platformFinish4x
+  - platformFinish6x
+  - platformFinish10x
   layers:
   - Default
   - TransparentFX

@@ -7,9 +7,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject startmenu;
     public static int Points;
-    private static int count = 0;
-
-    public bool isgameOver = false;
 
     void Start()
     {
@@ -27,7 +24,12 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0); 
+
+    }
+
+    public void PassLevel(){
+
 
     }
 }

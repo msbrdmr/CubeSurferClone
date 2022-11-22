@@ -53,14 +53,16 @@ public class CubeController : MonoBehaviour
                 stackControllerobj.GetComponent<StackController>().PushStack(gameObject);
             }
 
-            if (hit.transform.tag == "obstacle")
+            if (hit.transform.tag == "obstacle" 
+            || hit.transform.tag == "platformFinish1x"
+            || hit.transform.tag == "platformFinish2x"
+            || hit.transform.tag == "platformFinish4x"
+            || hit.transform.tag == "platformFinish6x"
+            || hit.transform.tag == "platformFinish10x")
             {
                 stackControllerobj.GetComponent<StackController>().PopStack(gameObject);
             }
-            if (hit.transform.tag == "finishStairs")
-            {
-                stackControllerobj.GetComponent<MovementController>().VerticalMovementSpeed = 0;
-            }
+            
         }
     }
 
@@ -74,7 +76,7 @@ public class CubeController : MonoBehaviour
             Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Vector3.down, out hit, 1.1f, finishLM)
             )
             {
-                Debug.Log("finish");
+                // Debug.Log("finish");
                 mouse.GetComponent<Animator>().SetBool("isFinished", true);
             }
 

@@ -4,10 +4,12 @@ public class StackController : MonoBehaviour
 {
     [SerializeField] private GameObject GameOver;
     [SerializeField] private GameObject GameOverButton;
+    [SerializeField] private GameObject NextLevelButton;
     public List<GameObject> cubelist = new List<GameObject>();
     private GameObject lastCube;
     private RaycastHit hit;
     private bool isOver;
+    private bool isFinished;
     public AudioSource collectSound;
 
 
@@ -86,6 +88,77 @@ public class StackController : MonoBehaviour
                     Time.timeScale = 0f;
                     isOver = true;
                 }
+            }
+
+            else if (hit.transform.tag == "platformFinish1x")
+            {
+                //animator set triggers
+                //multiply cheese
+                if (!isFinished)
+                {
+                    GetComponent<MovementController>().VerticalMovementSpeed = 0;
+                    NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
+                    PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 1);
+                    isFinished = true;
+
+                }
+                //rotate camera
+            }
+            else if (hit.transform.tag == "platformFinish2x")
+            {
+                //animator set triggers
+                //multiply cheese
+                if (!isFinished)
+                {
+                    GetComponent<MovementController>().VerticalMovementSpeed = 0;
+                    NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
+                    PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 2);
+                    isFinished = true;
+
+                }
+                //rotate camera
+            }
+            else if (hit.transform.tag == "platformFinish4x")
+            {
+                //animator set triggers
+                //multiply cheese
+                if (!isFinished)
+                {
+                    GetComponent<MovementController>().VerticalMovementSpeed = 0;
+                    NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
+                    PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 4);
+                    isFinished = true;
+
+                }
+                //rotate camera
+            }
+            else if (hit.transform.tag == "platformFinish6x")
+            {
+                //animator set triggers
+                //multiply cheese
+                if (!isFinished)
+                {
+                    GetComponent<MovementController>().VerticalMovementSpeed = 0;
+                    NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
+                    PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 6);
+                    isFinished = true;
+
+                }
+                //rotate camera
+            }
+            else if (hit.transform.tag == "platformFinish10x")
+            {
+                //animator set triggers
+                //multiply cheese
+                if (!isFinished)
+                {
+                    GetComponent<MovementController>().VerticalMovementSpeed = 0;
+                    NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
+                    PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 10);
+                    isFinished = true;
+
+                }
+                //rotate camera
             }
 
 
