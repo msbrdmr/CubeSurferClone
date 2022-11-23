@@ -103,10 +103,10 @@ public class CubeController : MonoBehaviour
 
             if
             (
-                Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f), Vector3.down, out hit, 1.2f) &&
-                Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Vector3.down, out hit, 1.2f) &&
-                Physics.Raycast(new Vector3(transform.position.x - 1f, transform.position.y, transform.position.z), Vector3.down, out hit, 1.2f) &&
-                Physics.Raycast(new Vector3(transform.position.x + 1f, transform.position.y, transform.position.z), Vector3.down, out hit, 1.2f)
+                Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z + 0.9f), Vector3.down, out hit, 1.2f) &&
+                Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z - 0.9f), Vector3.down, out hit, 1.2f) &&
+                Physics.Raycast(new Vector3(transform.position.x - 0.9f, transform.position.y, transform.position.z), Vector3.down, out hit, 1.2f) &&
+                Physics.Raycast(new Vector3(transform.position.x + 0.9f, transform.position.y, transform.position.z), Vector3.down, out hit, 1.2f)
             )
             {
                 if (hit.transform.name == "void")

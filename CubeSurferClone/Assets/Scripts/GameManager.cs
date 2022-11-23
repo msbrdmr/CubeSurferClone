@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    
-    [SerializeField]GameObject startmenu;
-    [SerializeField]GameObject gamemenu;
-    
+
+    [SerializeField] GameObject startmenu;
+    [SerializeField] GameObject gamemenu;
+
     public static int Points;
 
     void Start()
@@ -27,12 +27,28 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
 
-    public void PassLevel(){
+    public void PassLevel1()
+    {
+        SceneManager.LoadScene(2);
+    }
+    public void PassLevel2()
+    {
+        SceneManager.LoadScene(1);
+    }
 
+    public void mainmenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
 
+    public void pausegame()
+    {
+        if (Time.timeScale != 0) Time.timeScale = 0;
+        else Time.timeScale = 1;
     }
 }

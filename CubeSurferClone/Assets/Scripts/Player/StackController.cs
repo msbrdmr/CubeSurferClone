@@ -3,7 +3,7 @@ using UnityEngine;
 public class StackController : MonoBehaviour
 {
     [SerializeField] private GameObject GameOver;
-    [SerializeField] private GameObject GameOverButton;
+    [SerializeField] private GameObject RetryButton;
     [SerializeField] private GameObject NextLevelButton;
     public List<GameObject> cubelist = new List<GameObject>();
     private GameObject lastCube;
@@ -95,7 +95,7 @@ public class StackController : MonoBehaviour
                 if (!isOver)
                 {
                     GameOver.GetComponent<Animator>().SetTrigger("isgameOver");
-                    GameOverButton.GetComponent<Animator>().SetTrigger("isGameOver");
+                    RetryButton.GetComponent<Animator>().SetTrigger("isGameOver");
                     Time.timeScale = 0f;
                     isOver = true;
                     cam.GetComponent<CameraFollow>().finished = true;

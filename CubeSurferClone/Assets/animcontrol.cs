@@ -13,7 +13,7 @@ public class animcontrol : MonoBehaviour
     private Animator animator1;
     private Animator animator2;
     private Animator animator3;
-    private void Start()
+    private void Awake()
     {
         animator1 = playButton.GetComponent<Animator>();
         animator2 = settingsButton.GetComponent<Animator>();

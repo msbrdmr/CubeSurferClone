@@ -8,7 +8,6 @@ public class CameraFollow : MonoBehaviour
     private float beginY;
     private float newY;
     private Vector3 newPosition;
-    // private Vector3 newPositionY;
     [SerializeField] private float lerpvalue;
     [SerializeField] private AudioSource bgMusic;
     public int targetFrameRate = 120;
@@ -16,7 +15,6 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
-        QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = targetFrameRate;
         deltaZ = transform.position.z - playerTransform.position.z;
         deltaY = transform.position.y - playerTransform.position.y;
@@ -28,18 +26,24 @@ public class CameraFollow : MonoBehaviour
 
     {
 
-        if(!finished){
-        beginY = transform.position.y;
-        newY = playerTransform.position.y + deltaY;
-        newPosition = Vector3.Lerp(transform.position, new Vector3(transform.position.x, newY, playerTransform.position.z + deltaZ), lerpvalue);
-        transform.position = newPosition;
-        var newDeltaY = beginY - newY;
-        transform.Rotate(-1f * newDeltaY * 360 * (Time.fixedDeltaTime) / 4, 0, 0);
+        if (!finished)
+        {
+            beginY = transform.position.y;
+            newY = playerTransform.position.y + deltaY;
+            newPosition = Vector3.Lerp(transform.position, new Vector3(transform.position.x, newY, playerTransform.position.z + deltaZ), lerpvalue);
+            transform.position = newPosition;
+            var newDeltaY = beginY - newY;
 
+            var rotateX = -1f * newDeltaY * 360 * (Time.fixedDeltaTime) / 8;
+
+            transform.Rotate(rotateX, 0, 0);
+
+
+            Debug.Log(transform.rotation.x);
         }
 
-        
-        
+
+
     }
 }
 
