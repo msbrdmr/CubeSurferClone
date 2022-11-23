@@ -5,6 +5,7 @@ public class StackController : MonoBehaviour
     [SerializeField] private GameObject GameOver;
     [SerializeField] private GameObject RetryButton;
     [SerializeField] private GameObject NextLevelButton;
+    [SerializeField] private GameObject menubutton;
     public List<GameObject> cubelist = new List<GameObject>();
     private GameObject lastCube;
     private RaycastHit hit;
@@ -99,6 +100,7 @@ public class StackController : MonoBehaviour
                     Time.timeScale = 0f;
                     isOver = true;
                     cam.GetComponent<CameraFollow>().finished = true;
+                    menubutton.gameObject.SetActive(true);
                 }
             }
 
