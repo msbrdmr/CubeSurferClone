@@ -6287,7 +6287,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 400.00003}
+  m_AnchoredPosition: {x: 0, y: 400}
   m_SizeDelta: {x: 764.783, y: 476.12695}
   m_Pivot: {x: 0.49999994, y: 0.50000006}
 --- !u!114 &262776838
@@ -21881,7 +21881,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 328.3, y: -120.4}
+  m_AnchoredPosition: {x: 328.3, y: -120.3999}
   m_SizeDelta: {x: 420.111, y: 115.496}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1015691133
@@ -34468,7 +34468,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1600339307
 RectTransform:
   m_ObjectHideFlags: 0
@@ -46384,6 +46384,7 @@ MonoBehaviour:
   NextLevelButton: {fileID: 898106703}
   cubelist:
   - {fileID: 2351636282968188791}
+  isFinished: 0
   collectSound: {fileID: 1098891298}
   cam: {fileID: 963194227}
   centerRotate: {fileID: 2351636282968188791}

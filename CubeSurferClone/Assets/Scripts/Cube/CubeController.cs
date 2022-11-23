@@ -91,8 +91,13 @@ public class CubeController : MonoBehaviour
                     mouse.GetComponent<Animator>().SetBool("isFinished", true);
 
                 }
-                if(hit.transform.name=="finish2"){
-                    stackControllerobj.GetComponent<StackController>().finishGame(10);
+                if (hit.transform.name == "finish2")
+                {
+                    if (!stackControllerobj.GetComponent<StackController>().isFinished)
+                    {
+
+                        stackControllerobj.GetComponent<StackController>().finishGame(10);
+                    }
                 }
             }
 

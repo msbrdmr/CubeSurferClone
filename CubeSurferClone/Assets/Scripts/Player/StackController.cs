@@ -9,7 +9,7 @@ public class StackController : MonoBehaviour
     private GameObject lastCube;
     private RaycastHit hit;
     private bool isOver;
-    private bool isFinished;
+    public bool isFinished;
     public AudioSource collectSound;
 
     [Header("Camera")]
@@ -152,7 +152,10 @@ public class StackController : MonoBehaviour
         }
 
         if (other.transform.name=="finish2"){
-            finishGame(10);
+            if (!isFinished)
+                {
+                    finishGame(10);
+                }
         }
     }
 
