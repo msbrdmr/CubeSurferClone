@@ -9,7 +9,7 @@ public class SaveScore : MonoBehaviour
     public TextMeshProUGUI scoreText;
 
     private void Start() {
-        PlayerPrefs.SetInt("cheese",0);
+        
     }
 
     private void Update() {
