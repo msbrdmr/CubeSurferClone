@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public class CubeController : MonoBehaviour
 {
 
@@ -17,7 +17,16 @@ public class CubeController : MonoBehaviour
     [Header("Audio")]
     public AudioSource collectSound;
 
+    int rand;
 
+    public List<AudioSource> popSoundList = new List<AudioSource>();
+
+
+    private void Start()
+    {
+        rand = Random.Range(0, popSoundList.Count);
+        Debug.Log(popSoundList.Count);
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -48,12 +57,13 @@ public class CubeController : MonoBehaviour
             // Debug.Log("raycash hitted!");
             if (!isPushed)
             {
-                isPushed = true;
                 setDir();
                 stackControllerobj.GetComponent<StackController>().PushStack(gameObject);
+                popSoundList[rand].Play();
+                isPushed = true;
             }
 
-            if (hit.transform.tag == "obstacle" 
+            if (hit.transform.tag == "obstacle"
             || hit.transform.tag == "platformFinish1x"
             || hit.transform.tag == "platformFinish2x"
             || hit.transform.tag == "platformFinish4x"
@@ -62,7 +72,7 @@ public class CubeController : MonoBehaviour
             {
                 stackControllerobj.GetComponent<StackController>().PopStack(gameObject);
             }
-            
+
         }
     }
 
@@ -72,12 +82,18 @@ public class CubeController : MonoBehaviour
         {
 
             //finish line raycast
-            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f), Vector3.down, out hit, 1.1f, finishLM) &&
-            Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Vector3.down, out hit, 1.1f, finishLM)
+            if (Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z + 1f), Vector3.down, out hit, 1.1f) &&
+            Physics.Raycast(new Vector3(transform.position.x, transform.position.y, transform.position.z - 1f), Vector3.down, out hit, 1.1f)
             )
             {
-                // Debug.Log("finish");
-                mouse.GetComponent<Animator>().SetBool("isFinished", true);
+                if (hit.transform.name == "finish1")
+                {
+                    mouse.GetComponent<Animator>().SetBool("isFinished", true);
+
+                }
+                if(hit.transform.name=="finish2"){
+                    stackControllerobj.GetComponent<StackController>().finishGame(10);
+                }
             }
 
             if

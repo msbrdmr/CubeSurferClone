@@ -104,79 +104,36 @@ public class StackController : MonoBehaviour
 
             else if (hit.transform.tag == "platformFinish1x")
             {
-                //animator set triggers
-                //multiply cheese
                 if (!isFinished)
                 {
-                    GetComponent<MovementController>().VerticalMovementSpeed = 0;
-                    NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
-                    PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 1);
-                    isFinished = true;
-                    cam.GetComponent<CameraFollow>().finished = true;
+                    finishGame(1);
 
                 }
-                //rotate camera
             }
             else if (hit.transform.tag == "platformFinish2x")
             {
-                //animator set triggers
-                //multiply cheese
                 if (!isFinished)
                 {
-                    GetComponent<MovementController>().VerticalMovementSpeed = 0;
-                    NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
-                    PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 2);
-                    isFinished = true;
-                    cam.GetComponent<CameraFollow>().finished = true;
+                    finishGame(2);
 
                 }
-                //rotate camera
             }
             else if (hit.transform.tag == "platformFinish4x")
             {
-                //animator set triggers
-                //multiply cheese
                 if (!isFinished)
                 {
-                    GetComponent<MovementController>().VerticalMovementSpeed = 0;
-                    NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
-                    PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 4);
-                    isFinished = true;
-                    cam.GetComponent<CameraFollow>().finished = true;
+                    finishGame(4);
+
 
                 }
-                //rotate camera
             }
             else if (hit.transform.tag == "platformFinish6x")
             {
-                //animator set triggers
-                //multiply cheese
                 if (!isFinished)
                 {
-                    GetComponent<MovementController>().VerticalMovementSpeed = 0;
-                    NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
-                    PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 6);
-                    isFinished = true;
-                    cam.GetComponent<CameraFollow>().finished = true;
+                    finishGame(6);
 
                 }
-                //rotate camera
-            }
-            else if (hit.transform.tag == "platformFinish10x")
-            {
-                //animator set triggers
-                //multiply cheese
-                if (!isFinished)
-                {
-                    GetComponent<MovementController>().VerticalMovementSpeed = 0;
-                    NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
-                    PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * 10);
-                    isFinished = true;
-                    cam.GetComponent<CameraFollow>().finished = true;
-
-
-                }
-                //rotate camera
             }
 
 
@@ -193,5 +150,18 @@ public class StackController : MonoBehaviour
             other.transform.gameObject.GetComponent<Cheese>().collectCheese();
             Destroy(other.transform.gameObject);
         }
+
+        if (other.transform.name=="finish2"){
+            finishGame(10);
+        }
+    }
+
+    public void finishGame(int multiplier)
+    {
+        GetComponent<MovementController>().VerticalMovementSpeed = 0;
+        NextLevelButton.GetComponent<Animator>().SetTrigger("levelFinished");
+        cam.GetComponent<CameraFollow>().finished = true;
+        PlayerPrefs.SetInt("cheese", PlayerPrefs.GetInt("cheese") * multiplier);
+        isFinished = true;
     }
 }
