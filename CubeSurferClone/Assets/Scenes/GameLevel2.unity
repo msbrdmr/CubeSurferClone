@@ -39148,7 +39148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputcontroller: {fileID: 1332284647}
   HorizontalMovementSpeed: 20
-  VerticalMovementSpeed: 10
+  VerticalMovementSpeed: 5
   bound: 4
 --- !u!65 &1332284650
 BoxCollider:
